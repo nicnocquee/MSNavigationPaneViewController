@@ -183,7 +183,7 @@ typedef void (^ViewActionBlock)(UIView *view);
     
     [self.view addSubview:self.paneView];
     
-    [self.paneView addObserver:self forKeyPath:@"frame" options:NULL context:NULL];
+    [self.paneView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
     
     self.panePanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panePanned:)];
     self.panePanGestureRecognizer.minimumNumberOfTouches = 1;
