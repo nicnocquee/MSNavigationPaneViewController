@@ -32,12 +32,24 @@ extern const CGFloat MSNavigationPaneDefaultOpenStateRevealWidthRight;
 extern const CGFloat MSNavigationPaneDefaultOpenStateRevealWidthTop;
 
 typedef NS_ENUM(NSUInteger, MSNavigationPaneOpenDirection) {
-    MSNavigationPaneOpenDirectionLeft,
+    MSNavigationPaneOpenDirectionHorizontal,
     MSNavigationPaneOpenDirectionTop,
+};
+
+typedef NS_ENUM(NSUInteger, MSNavigationPaneOpenSide) {
+    MSNavigationPaneOpenSideLeft,
+    MSNavigationPaneOpenSideRight,
+};
+
+typedef NS_ENUM(NSUInteger, MSNavigationPanDirection) {
+    MSNavigationPanDirectionLeft,
+    MSNavigationPanDirectionRight,
 };
 
 typedef NS_ENUM(NSUInteger, MSNavigationPaneState) {
     MSNavigationPaneStateOpen,
+    MSNavigationPaneStateOpenLeft,
+    MSNavigationPaneStateOpenRight,
     MSNavigationPaneStateClosed,
 };
 
@@ -60,8 +72,10 @@ typedef NS_ENUM(NSUInteger, MSNavigationPaneAppearanceType) {
 
 @property (nonatomic, strong) UIViewController *paneViewController;
 @property (nonatomic, strong) UIViewController *masterViewController;
+@property (nonatomic, strong) UIViewController *rightMasterViewController;
 
 @property (nonatomic, readonly) UIView *masterView;
+@property (nonatomic, readonly) UIView *rightMasterView;
 @property (nonatomic, readonly) UIView *paneView;
 
 // The width that the pane should open to reveal the master
@@ -78,6 +92,7 @@ typedef NS_ENUM(NSUInteger, MSNavigationPaneAppearanceType) {
 
 - (void)setPaneViewController:(UIViewController *)paneViewController animated:(BOOL)animated completion:(void (^)(void))completion;
 - (void)setPaneState:(MSNavigationPaneState)paneState animated:(BOOL)animated completion:(void (^)(void))completion;
+- (void)setPaneState:(MSNavigationPaneState)paneState animated:(BOOL)animated openSide:(MSNavigationPaneOpenSide)side completion:(void (^)(void))completion;
 
 @end
 
